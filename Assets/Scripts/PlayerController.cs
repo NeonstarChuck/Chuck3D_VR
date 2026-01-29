@@ -44,7 +44,7 @@ public class PlayerController : MonoBehaviour
                 projectileSpawnPoint.rotation
             );
 
-            CsvLogger.LogEvent("Player", "Shoot");
+            
         }
 
     }
