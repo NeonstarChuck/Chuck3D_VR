@@ -70,7 +70,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    private void RestartGame()
+    public void RestartGame()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }

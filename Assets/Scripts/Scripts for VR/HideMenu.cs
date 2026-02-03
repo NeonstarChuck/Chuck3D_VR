@@ -25,4 +25,10 @@ public class HideMenu : MonoBehaviour
     {
         menuCanvas.SetActive(!menuCanvas.activeSelf);
     }
+
+    public void ToggleMenuExternal()
+{
+    menuCanvas.SetActive(!menuCanvas.activeSelf);
+}
+
 }

@@ -38,14 +38,16 @@ public class PlayerController : MonoBehaviour
 
         if (shootAction.action.WasPerformedThisFrame())
         {
-            Instantiate(
-                projectilePrefab,
-                projectileSpawnPoint.position,
-                projectileSpawnPoint.rotation
-            );
-
-            
+            Shoot();
         }
-
+        }
+    
+         private void Shoot()
+    {
+        Instantiate(
+            projectilePrefab,
+            projectileSpawnPoint.position,
+            projectileSpawnPoint.rotation
+        );
     }
-}
+    }
