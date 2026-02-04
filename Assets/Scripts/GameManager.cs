@@ -24,7 +24,7 @@ public class GameManager : MonoBehaviour
     public Timer timer;
 
     private int totalToRescue;
-    private int maxDeaths = 3;
+    private int maxDeaths = 6;
 
     private int rescuedCount = 0;
     private int deadCount = 0;
@@ -32,9 +32,9 @@ public class GameManager : MonoBehaviour
     private bool gameActive = false;
 
     // menu buttons med 3 funktioner
-    public void StartEasy() { StartGame(5, 40f, false); }
-    public void StartMedium() { StartGame(10, 60f, false); }
-    public void StartHard() { StartGame(15, 80f, true); }
+    public void StartEasy() { StartGame(10, 120f, false); }
+    public void StartMedium() { StartGame(15, 90f, false); }
+    public void StartHard() { StartGame(20, 80f, true); }
 
     private void Start()
     {

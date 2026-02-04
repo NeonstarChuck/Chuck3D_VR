@@ -678,6 +678,7 @@ GameObject:
   - component: {fileID: 5422824378147507793}
   - component: {fileID: 3491138272870368232}
   - component: {fileID: 7616418539219537889}
+  - component: {fileID: -118564562677031577}
   m_Layer: 0
   m_Name: Chicken
   m_TagString: Animal
@@ -819,7 +820,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 20
-  damageParticle: {fileID: 2142078834280022329, guid: 3628e6a2d29814b27bc8d485dcad2ff6, type: 3}
+  damageParticle: {fileID: 0}
   gameManager: {fileID: 0}
 --- !u!114 &7616418539219537889
 MonoBehaviour:
@@ -950,6 +951,23 @@ MonoBehaviour:
   m_LimitAngularVelocity: 0
   m_MaxLinearVelocityDelta: 10
   m_MaxAngularVelocityDelta: 20
+--- !u!114 &-118564562677031577
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3202155128723915453}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0a960bc488c2f3048a90116f91a3eaea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PixPlays.ElementalVFX.LocationVfx
+  _SafetyDestroy: 0
+  _DestoyDelay: 0
+  _LocationEffect: {fileID: 0}
+  _RadiusFactor: 0
+  _IgnoreYDirection: 0
 --- !u!1 &3475746859497438389
 GameObject:
   m_ObjectHideFlags: 0

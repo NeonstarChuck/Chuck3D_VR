@@ -702,6 +702,7 @@ GameObject:
   - component: {fileID: -3261956111906144948}
   - component: {fileID: -2395597702396539438}
   - component: {fileID: 709668894043384678}
+  - component: {fileID: 2314974967548626138}
   m_Layer: 0
   m_Name: Cow
   m_TagString: Animal
@@ -979,6 +980,19 @@ MonoBehaviour:
   m_LimitAngularVelocity: 0
   m_MaxLinearVelocityDelta: 10
   m_MaxAngularVelocityDelta: 20
+--- !u!114 &2314974967548626138
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3330932348440385458}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 86361429be8c3a8429bb99c19a4d6b70, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PixPlays.ElementalVFX.ParticleSystemVfx
+  _Vfx: {fileID: 0}
 --- !u!1 &3627186553220283295
 GameObject:
   m_ObjectHideFlags: 0
