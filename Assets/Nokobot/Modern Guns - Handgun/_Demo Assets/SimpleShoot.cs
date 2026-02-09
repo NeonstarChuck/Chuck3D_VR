@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.XR.Interaction.Toolkit.Interactors;
+
 
 [AddComponentMenu("Nokobot/Modern Guns/Simple Shoot")]
 public class SimpleShoot : MonoBehaviour
@@ -12,6 +14,13 @@ public class SimpleShoot : MonoBehaviour
     public GameObject bulletPrefab;
     public GameObject casingPrefab;
     public GameObject muzzleFlashPrefab;
+    public AudioSource gunAudio;
+    XRBaseInputInteractor currentInteractor;
+    [Header("Haptics")]
+    [Range(0f, 1f)]
+    public float hapticIntensity = 0.4f;
+    public float hapticDuration = 0.1f;
+
 
     [Header("Location Refrences")]
     [SerializeField] private Animator gunAnimator;
@@ -19,9 +28,9 @@ public class SimpleShoot : MonoBehaviour
     [SerializeField] private Transform casingExitLocation;
 
     [Header("Settings")]
-    [Tooltip("Specify time to destory the casing object")] [SerializeField] private float destroyTimer = 2f;
-    [Tooltip("Bullet Speed")] [SerializeField] private float shotPower = 2000f;
-    [Tooltip("Casing Ejection Speed")] [SerializeField] private float ejectPower = 150f;
+    [Tooltip("Specify time to destory the casing object")][SerializeField] private float destroyTimer = 2f;
+    [Tooltip("Bullet Speed")][SerializeField] private float shotPower = 2000f;
+    [Tooltip("Casing Ejection Speed")][SerializeField] private float ejectPower = 150f;
 
 
     void Start()
@@ -31,6 +40,12 @@ public class SimpleShoot : MonoBehaviour
 
         if (gunAnimator == null)
             gunAnimator = GetComponentInChildren<Animator>();
+        var grab = GetComponent<UnityEngine.XR.Interaction.Toolkit.Interactables.XRGrabInteractable>();
+        grab.selectEntered.AddListener(e =>
+            currentInteractor = e.interactorObject as XRBaseInputInteractor);
+
+        grab.selectExited.AddListener(_ =>
+            currentInteractor = null);
     }
 
     void Update()
@@ -41,6 +56,7 @@ public class SimpleShoot : MonoBehaviour
             //Calls animation on the gun that has the relevant animation events that will fire
             gunAnimator.SetTrigger("Fire");
         }
+
     }
 
 
@@ -56,7 +72,14 @@ public class SimpleShoot : MonoBehaviour
             //Destroy the muzzle flash effect
             Destroy(tempFlash, destroyTimer);
         }
-
+        if (gunAudio != null)
+        {
+            gunAudio.Play();
+        }
+        if (currentInteractor != null)
+        {
+            currentInteractor.SendHapticImpulse(hapticIntensity, hapticDuration);
+        }
         //cancels if there's no bullet prefeb
         if (!bulletPrefab)
         { return; }
@@ -84,5 +107,6 @@ public class SimpleShoot : MonoBehaviour
         //Destroy casing after X seconds
         Destroy(tempCasing, destroyTimer);
     }
+
 
 }
