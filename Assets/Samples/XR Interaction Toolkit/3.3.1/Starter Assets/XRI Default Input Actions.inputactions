@@ -985,6 +985,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "PauseMenu",
+                    "type": "Button",
+                    "id": "3b7659a7-9060-4708-8937-d2d68bf22e8a",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -1299,7 +1308,7 @@
                 {
                     "name": "",
                     "id": "b2244298-f38a-4d2d-90fb-c6be96865119",
-                    "path": "<XRController>{LeftHand}/{GripButton}",
+                    "path": "<XRController>{LeftHand}/{PrimaryButton}",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -1309,12 +1318,12 @@
                 },
                 {
                     "name": "",
-                    "id": "4144444e-6ee7-450f-bb7e-e3b2c34242ed",
-                    "path": "<HandInteraction>{LeftHand}/pointer/isTracked",
+                    "id": "f534b290-045f-49a5-87fd-a6aef4ca5f9b",
+                    "path": "<XRController>{LeftHand}/{SecondaryButton}",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "HideMenu",
+                    "action": "PauseMenu",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
@@ -1999,18 +2008,7 @@
                 {
                     "name": "",
                     "id": "ffc26b10-9567-44fe-b28c-a6129666cb10",
-                    "path": "<XRController>{RightHand}/primaryButton",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Shoot",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "6cd39566-d8a5-401b-b930-254e860b2126",
-                    "path": "<HandInteraction>{RightHand}/pinchPose/isTracked",
+                    "path": "<XRController>{RightHand}/{TriggerButton}",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
