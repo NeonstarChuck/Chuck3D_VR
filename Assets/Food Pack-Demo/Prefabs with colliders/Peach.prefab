@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 7835131566770209173}
   - component: {fileID: 5566453686136060680}
   - component: {fileID: -4662910337652614706}
+  - component: {fileID: -4738444287745479099}
   m_Layer: 0
   m_Name: Peach
   m_TagString: Untagged
@@ -156,3 +157,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: '::'
   targetObjectName: TeleportAnimals
   destroyDelay: 2
+--- !u!114 &-4738444287745479099
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9152073641914881136}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d00ba6185bc4b6d4fbcbb376a57f4e9a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PullProjectile
+  speed: 1
+  lifetime: 3
+  holdOffset: {x: 0, y: -0.5, z: 2}
