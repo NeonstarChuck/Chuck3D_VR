@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.UI;
 using NativeWebSocket;
 using UnityEngine.Events;
 using System;
@@ -10,6 +11,7 @@ using UnityEditor;
 
 public class WebSocketClientExample : MonoBehaviour
 {
+    [SerializeField] private Slider volumeSlider;
     private WebSocket websocket;
     public string serverIP = "XXX.XXX.XXX.XXX"; // Replace with your server's IP address
     public int serverPort = 8081; // Replace with your server's port number (8081 is the default)
@@ -117,25 +119,41 @@ public class WebSocketClientExample : MonoBehaviour
         }
     }
 
-    public void IncomingMessageParser(String msg)
+   public void IncomingMessageParser(string msg)
+{
+    if (!msg.Contains(":")) return;
+
+    string type = msg.Substring(0, msg.IndexOf(":"));
+    string value = msg.Substring(msg.IndexOf(":") + 1);
+
+    // ---------------------------
+    // ESP32 BUTTON
+    // ---------------------------
+    if (type.Equals("button", StringComparison.OrdinalIgnoreCase))
     {
-        string valueParsed = msg.Substring( msg.IndexOf(":") + 1);
-
-        if(msg.Contains("button")) {
-            if(valueParsed == "1") 
-            {
-                //do something if button pressed
-                Debug.Log("ESP32 Button Pressed");
-            }
-            if(valueParsed == "0") 
-            {
-                //do something if button released
-                Debug.Log("ESP32 Button Released");
-            }
-
-        }
-
+        if (value == "1")
+            Debug.Log("ESP32 Button Pressed");
+        else if (value == "0")
+            Debug.Log("ESP32 Button Released");
     }
+
+    // ---------------------------
+    // JOYSTICK VOLUME
+    // ---------------------------
+    if (type.Equals("VOLUME", StringComparison.OrdinalIgnoreCase))
+    {
+        if (float.TryParse(value, out float rawVolume))
+        {
+            float volume = Mathf.Clamp01(rawVolume / 100f);
+
+            volumeSlider.value = volume;
+            AudioListener.volume = volume;
+
+            PlayerPrefs.SetFloat("musicVolume", volume);
+        }
+    }
+}
+
 
 }
 

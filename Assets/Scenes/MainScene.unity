@@ -754,7 +754,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 117267092}
-  - component: {fileID: 117267091}
+  - component: {fileID: 117267093}
   m_Layer: 0
   m_Name: WebSocketClient
   m_TagString: Untagged
@@ -762,23 +762,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &117267091
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 117267090}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e0162983ed00541ffa58737c9e10a747, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::WebSocketClient
-  lightBulbDigitalLight: {fileID: 0}
-  lightBulbAnalogLight: {fileID: 0}
-  IPAdress: 10.204.0.6
-  Port: 7890
-  connectionStatusText: {fileID: 0}
 --- !u!4 &117267092
 Transform:
   m_ObjectHideFlags: 0
@@ -794,6 +777,21 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &117267093
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 117267090}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7ee1741b8bc7e4d2e9f19b05af2114a0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::WebSocketClientExample
+  serverIP: 10.204.0.42
+  serverPort: 8081
+  ledIntensity: 0
 --- !u!1 &119300878
 GameObject:
   m_ObjectHideFlags: 0
