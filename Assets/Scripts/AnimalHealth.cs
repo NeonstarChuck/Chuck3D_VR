@@ -5,6 +5,12 @@ public class AnimalHealth : MonoBehaviour
     public float maxHealth = 20f;
     public ParticleSystem damageParticle;
     private float currentHealth;
+    public float CurrentHealth => currentHealth;
+    public float HealthNormalized
+    {
+        get { return currentHealth / maxHealth; }
+    }
+
 
     [HideInInspector]
     public GameManager gameManager;
