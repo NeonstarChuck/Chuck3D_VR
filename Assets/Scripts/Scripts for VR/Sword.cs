@@ -8,6 +8,8 @@ public class Sword : MonoBehaviour
     public AudioClip hitClip;          
     public float hitCooldown = 0.25f;
     private float lastHitTime;
+    public WebSocketClientExample socket;
+
 
     private void OnTriggerEnter(Collider other)
     {
@@ -20,6 +22,7 @@ public class Sword : MonoBehaviour
             lastHitTime = Time.time;
             enemy.TakeHit();
              PlayHitSound();
+             socket.SendGunHit();
         }
     }
     void PlayHitSound()

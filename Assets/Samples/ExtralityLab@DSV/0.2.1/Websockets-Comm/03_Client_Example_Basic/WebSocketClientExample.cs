@@ -3,6 +3,7 @@ using UnityEngine.UI;
 using NativeWebSocket;
 using UnityEngine.Events;
 using System;
+using UnityEngine.SceneManagement;
 
 
 #if UNITY_EDITOR
@@ -55,10 +56,10 @@ public class WebSocketClientExample : MonoBehaviour
     {
         //Although not necessary for our lab, I have left this here as a reference
         //Websockets will not work on WebGL builds so with this preprocessor directive we include all builds except WebGL as well as including the editor for testing purposes
-        #if !UNITY_WEBGL || UNITY_EDITOR 
+#if !UNITY_WEBGL || UNITY_EDITOR
 
-            websocket.DispatchMessageQueue();
-        #endif
+        websocket.DispatchMessageQueue();
+#endif
     }
 
     async void OnDestroy()
@@ -119,40 +120,63 @@ public class WebSocketClientExample : MonoBehaviour
         }
     }
 
-   public void IncomingMessageParser(string msg)
-{
-    if (!msg.Contains(":")) return;
-
-    string type = msg.Substring(0, msg.IndexOf(":"));
-    string value = msg.Substring(msg.IndexOf(":") + 1);
-
-    // ---------------------------
-    // ESP32 BUTTON
-    // ---------------------------
-    if (type.Equals("button", StringComparison.OrdinalIgnoreCase))
+    public async void SendGunHit()
     {
-        if (value == "1")
-            Debug.Log("ESP32 Button Pressed");
-        else if (value == "0")
-            Debug.Log("ESP32 Button Released");
-    }
-
-    // ---------------------------
-    // JOYSTICK VOLUME
-    // ---------------------------
-    if (type.Equals("VOLUME", StringComparison.OrdinalIgnoreCase))
-    {
-        if (float.TryParse(value, out float rawVolume))
+        if (websocket != null && websocket.State == WebSocketState.Open)
         {
-            float volume = Mathf.Clamp01(rawVolume / 100f);
-
-            volumeSlider.value = volume;
-            AudioListener.volume = volume;
-
-            PlayerPrefs.SetFloat("musicVolume", volume);
+            await websocket.SendText("HIT");
+            Debug.Log("Sent: HIT");
+        }
+        else
+        {
+            Debug.LogWarning("WebSocket not connected");
         }
     }
-}
+
+    public void IncomingMessageParser(string msg)
+    {
+        if (!msg.Contains(":")) return;
+
+        string type = msg.Substring(0, msg.IndexOf(":"));
+        string value = msg.Substring(msg.IndexOf(":") + 1);
+
+        // ---------------------------
+        // ESP32 BUTTON
+        // ---------------------------
+        if (type.Equals("button", System.StringComparison.OrdinalIgnoreCase))
+    {
+        if (value == "1")
+        {
+            Debug.Log("ESP32 Button Pressed → Restart Game");
+
+            // Restart the current scene
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        }
+        else if (value == "0")
+        {
+            Debug.Log("ESP32 Button Released");
+        }
+    }
+
+        
+
+
+        // ---------------------------
+        // JOYSTICK VOLUME
+        // ---------------------------
+        if (type.Equals("VOLUME", StringComparison.OrdinalIgnoreCase))
+        {
+            if (float.TryParse(value, out float rawVolume))
+            {
+                float volume = Mathf.Clamp01(rawVolume / 100f);
+
+                volumeSlider.value = volume;
+                AudioListener.volume = volume;
+
+                PlayerPrefs.SetFloat("musicVolume", volume);
+            }
+        }
+    }
 
 
 }

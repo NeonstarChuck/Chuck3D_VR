@@ -9,6 +9,7 @@ using UnityEngine.XR.Interaction.Toolkit.Interactors;
 public class SimpleShoot : MonoBehaviour
 {
 
+    public WebSocketClientExample socket;
     public InputActionReference gunShoot;
     [Header("Prefab Refrences")]
     public GameObject bulletPrefab;
@@ -20,6 +21,7 @@ public class SimpleShoot : MonoBehaviour
     [Range(0f, 1f)]
     public float hapticIntensity = 0.4f;
     public float hapticDuration = 0.1f;
+    XRBaseInteractor socketInteractor;
 
 
     [Header("Location Refrences")]
@@ -55,7 +57,10 @@ public class SimpleShoot : MonoBehaviour
         {
             //Calls animation on the gun that has the relevant animation events that will fire
             gunAnimator.SetTrigger("Fire");
+            
+             socket.SendGunHit();
         }
+        
 
     }
 
