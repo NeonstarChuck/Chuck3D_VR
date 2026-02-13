@@ -3,28 +3,37 @@ using UnityEngine;
 public class AnimalHealth : MonoBehaviour
 {
     public float maxHealth = 20f;
+    public float hitDamage = 10f;   // 👈 damage per hit
     public ParticleSystem damageParticle;
-    private float currentHealth;
-    public float CurrentHealth => currentHealth;
-    public float HealthNormalized
-    {
-        get { return currentHealth / maxHealth; }
-    }
 
+    private float currentHealth;
 
     [HideInInspector]
     public GameManager gameManager;
+
+    public float CurrentHealth => currentHealth;
+    public float HealthNormalized => currentHealth / maxHealth;
 
     void Start()
     {
         currentHealth = maxHealth;
     }
-    //When the health is 0/ call the die function
+
+    // 🔥 THIS IS THE IMPORTANT PART
+    // Allows enemies using TakeHit() logic to damage animals
+    public void TakeHit()
+    {
+        TakeDamage(hitDamage);
+    }
+
     public void TakeDamage(float damage)
     {
         currentHealth -= damage;
 
-        if (currentHealth <= 0)
+        if (damageParticle != null)
+            damageParticle.Play();
+
+        if (currentHealth <= 0f)
         {
             Die();
         }
@@ -32,16 +41,11 @@ public class AnimalHealth : MonoBehaviour
 
     private void Die()
     {
-        // Notify GameManager
         if (gameManager != null)
         {
             gameManager.AnimalDead();
         }
 
-        // Destroy animal
         Destroy(gameObject);
-        if (damageParticle != null)
-            damageParticle.Play();
     }
 }
-
