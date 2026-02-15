@@ -24,7 +24,7 @@ public class GameManager : MonoBehaviour
     public Timer timer;
 
     private int totalToRescue;
-    private int maxDeaths = 6;
+    private int maxDeaths = 10;
 
     private int rescuedCount = 0;
     private int deadCount = 0;
