@@ -24,7 +24,7 @@ public class GameManager : MonoBehaviour
     public Timer timer;
 
     private int totalToRescue;
-    private int maxDeaths = 6;
+    private int maxDeaths = 10;
 
     private int rescuedCount = 0;
     private int deadCount = 0;
@@ -37,10 +37,23 @@ public class GameManager : MonoBehaviour
     public void StartHard() { StartGame(20, 80f, true); }
 
     private void Start()
-    {
+{
+    Debug.Log("GameManager Start() running");
 
-        Time.timeScale = 0f;
-    }
+    titleSreen.SetActive(true);
+    InformationPanel.SetActive(true);
+
+    gameOverPanel.SetActive(false);
+    gameOverWinPanel.SetActive(false);
+
+    rescuedText.gameObject.SetActive(false);
+    deadText.gameObject.SetActive(false);
+    Timer.gameObject.SetActive(false);
+
+    Time.timeScale = 0f;
+}
+
+
 
     private void StartGame(int totalAnimals, float timeLimit, bool enableHardEnemy)
     {

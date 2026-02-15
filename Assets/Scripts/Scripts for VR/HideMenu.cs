@@ -8,7 +8,7 @@ public class HideMenu : MonoBehaviour
 
     void Start()
     {
-        menuCanvas.SetActive(false); // Ensure it's hidden
+        menuCanvas.SetActive(true); // Ensure it's hidden
     }
 
     void OnEnable()
