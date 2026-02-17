@@ -135,6 +135,7 @@ public class GameManager : MonoBehaviour
 
     private void GameOverWin(string message)
     {
+        titleSreen.gameObject.SetActive(false);
         gameActive = false;
         gameOverWinPanel.SetActive(true);
         Debug.Log(message);
@@ -143,6 +144,7 @@ public class GameManager : MonoBehaviour
 
     private void GameOver(string message)
     {
+        titleSreen.gameObject.SetActive(false);
         gameActive = false;
         gameOverPanel.SetActive(true);
         Debug.Log(message);
